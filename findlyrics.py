@@ -1,8 +1,3 @@
-import csv
-
-with open('songinfo.csv') as csvfile:
-    readCSV = csv.reader(csvfile, delimiter=',')
-    for row in readCSV:
+with open('songinfo.csv', 'r+') as csv_file:
+    for row in csv_file:
         print(row)
-        print(row[0])
-        print(row[0], row[1], row[2], )

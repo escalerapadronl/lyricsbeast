@@ -22,8 +22,8 @@ for child in chart_wrapper.children:
         for song in song_info:
             song_title = song.find("cite", class_='title')
             song_artist = song.find('em', class_='artist')
-            song_details['title'].append(song_title.text)
-            song_details["artist"].append(song_artist.text)
+            song_details['title'].append(song_title.text.lower())
+            song_details["artist"].append(song_artist.text.lower())
 print(song_details)
 
 df = pd.DataFrame(song_details)

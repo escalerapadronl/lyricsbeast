@@ -29,8 +29,15 @@ def collect_data():
     df = df.drop_duplicates()
     df.to_csv("songinfo.csv")
 
+def remove_spaces():
+    with open("songinfo.csv", "r+") as infile:
+        r = csv.reader(infile)
+        for row in r:
+            row[1] = row[1].strip()
+            row[2] = row[2].strip()
 
 def main():
     collect_data()
+    remove_spaces()
 
 main()

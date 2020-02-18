@@ -27,7 +27,8 @@ for child in chart_wrapper.children:
 print(song_details)
 
 df = pd.DataFrame(song_details)
-
+df = df.drop_duplicates()
+print(df)
 df.to_csv("songinfo.csv")
 
 

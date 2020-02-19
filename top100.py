@@ -30,12 +30,20 @@ def collect_data():
     df.to_csv("songinfo.csv")
 
 def remove_spaces():
-    with open("songinfo.csv", "r+") as infile:
-        r = csv.reader(infile)
-        for row in r:
-            row[1] = row[1].strip()
-            row[2] = row[2].strip()
+    song_no_spaces = {
+        'title': [],
+        'artist': []
+    }
 
+    with open("songinfo.csv", "r+") as csv_file:
+        writer = csv.reader(csv_file)
+        for row in writer:
+            song_no_spaces['title'].append(row[1].replace(" ", ""))
+            song_no_spaces['artist'].append(row[2].replace(" ", ""))
+        df = pd.DataFrame(song_no_spaces)
+        df.to_csv("songinfonospaces.csv")
+
+        
 def main():
     collect_data()
     remove_spaces()

@@ -73,14 +73,16 @@ def get_lyrics():
         for line in reader:
             title_list.append(line[1])
             artist_list.append(line[2])
-
-    url = req.get(website.format(artist_list[0], title_list[0]))
-    soup = BeautifulSoup(url.content, 'lxml')
-    song_lyrics = soup.find("div", class_=None)
-
+        for n in range(93):
+            url = req.get(website.format(artist_list[n], title_list[n]))
+            soup = BeautifulSoup(url.content, 'lxml')
+            song_lyrics = soup.find("div", class_=None)
+            
+            if artist_list[n] == "mustard&roddyricch":
+                print("hello")
 def main():
     # collect_data()
     # remove_spaces()
-    #get_lyrics()
+    get_lyrics()
 
 main()

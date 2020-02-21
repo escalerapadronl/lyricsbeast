@@ -62,11 +62,25 @@ def get_first_artist(original_artist):
             temp_artist = temp_artist + i
     return temp_artist
 
-def get_only_letter(title, artist):
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+def get_lyrics():
+    title_list = []
+    artist_list = []
+    website = 'https://www.azlyrics.com/lyrics/{}/{}.html'
+    with open("songinfonospaces.csv", "r") as file:
+        reader = csv.reader(file)
+        next(reader)
+        next(reader)
+        for line in reader:
+            title_list.append(line[1])
+            artist_list.append(line[2])
+
+    url = req.get(website.format(artist_list[0], title_list[0]))
+    soup = BeautifulSoup(url.content, 'lxml')
+    song_lyrics = soup.find("div", class_=None)
 
 def main():
-    collect_data()
-    remove_spaces()
+    # collect_data()
+    # remove_spaces()
+    #get_lyrics()
 
 main()
